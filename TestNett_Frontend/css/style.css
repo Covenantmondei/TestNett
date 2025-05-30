@@ -1,0 +1,392 @@
+/* Base Styles */
+:root {
+  --primary: #2c3e50;     /* Dark blue */
+  --secondary: #3498db;   /* Bright blue */
+  --accent: #27ae60;      /* Green */
+  --error: #e74c3c;       /* Red */
+  --bg: #f5f5f5;         /* Light gray */
+  --text: #333333;       /* Dark gray */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: var(--bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.signup-container {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 450px;
+  padding: 30px;
+  position: relative;
+  overflow: hidden;
+}
+
+.logo {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.logo img {
+  height: 50px;
+}
+
+h2 {
+  color: var(--primary);
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+/* Form Steps */
+.form-step {
+  display: none;
+  animation: fadeIn 0.5s ease;
+}
+
+.form-step.active {
+  display: block;
+}
+
+/* Progress Bar */
+/* Progress Bar */
+.progress-container {
+  width: 100%;
+  margin: 2rem 0;
+}
+
+.progress-line {
+  height: 4px;
+  background: #e0e0e0;
+  position: relative;
+  border-radius: 2px;
+}
+
+.progress-line::before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: var(--progress-width, 0%);
+  background: var(--accent);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 4px;
+  background-color: #e0e0e0;
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: #4CAF50;
+  width: 0;
+  animation: indeterminate 1.5s infinite linear;
+  transform-origin: 0% 50%;
+}
+
+.progress-steps {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.progress-step {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #777;
+  font-weight: bold;
+  position: relative;
+}
+
+.progress-step.active {
+  background: var(--accent);
+  color: white;
+}
+
+.progress-step.completed::after {
+  content: '✓';
+  color: white;
+}
+
+.step-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  padding: 0 10px;
+}
+
+.step-label {
+  color: #888;
+  font-size: 0.9rem;
+  position: relative;
+  text-align: center;
+  transition: color 0.3s ease;
+}
+
+.step-label.active {
+  color: #4CAF50;
+  font-weight: 600;
+}
+
+.step-label.completed {
+  color: #4CAF50;
+}
+
+/* Input Fields */
+input, select {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border 0.3s;
+}
+
+input:focus, select:focus {
+  border-color: var(--secondary);
+  outline: none;
+}
+
+input.error {
+  border-color: var(--error);
+}
+
+.error-message {
+  color: var(--error);
+  font-size: 0.8rem;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  display: none;
+}
+
+/* Password Wrapper */
+.password-wrapper {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 15px;
+  top: 14px;
+  color: var(--text);
+  cursor: pointer;
+}
+
+/* Password Strength Meter */
+.password-strength {
+  margin-bottom: 20px;
+}
+
+.strength-bar {
+  height: 5px;
+  background: #ddd;
+  border-radius: 5px;
+  margin-top: 5px;
+  overflow: hidden;
+}
+
+.strength-bar::after {
+  content: '';
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--error);
+  transition: width 0.3s, background 0.3s;
+}
+
+.strength-text {
+  font-size: 0.8rem;
+  color: var(--text);
+}
+
+/* Terms Checkbox */
+.terms-checkbox {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+}
+
+.terms-checkbox input {
+  width: auto;
+  margin-right: 10px;
+}
+
+.terms-checkbox a {
+  color: var(--secondary);
+  text-decoration: none;
+}
+
+/* Buttons */
+.btn-group {
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+  flex: 1;
+}
+
+.next-btn, .submit-btn {
+  background: var(--accent);
+  color: white;
+}
+
+.next-btn:hover, .submit-btn:hover {
+  background: #219653;
+}
+
+.back-btn {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.back-btn:hover {
+  background: #e0e0e0;
+}
+
+.google-btn {
+  background: #4285F4;
+  color: white;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.google-btn:hover {
+  background: #357ABD;
+}
+
+.email-btn {
+  background: white;
+  color: var(--primary);
+  border: 1px solid #ddd;
+  width: 100%;
+}
+
+.email-btn:hover {
+  background: var(--bg);
+}
+
+/* Divider */
+.divider {
+  text-align: center;
+  margin: 15px 0;
+  color: #777;
+  position: relative;
+}
+
+.divider::before, .divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 45%;
+  height: 1px;
+  background: #ddd;
+}
+
+.divider::before {
+  left: 0;
+}
+
+.divider::after {
+  right: 0;
+}
+
+/* Login Link */
+.login-link {
+  text-align: center;
+  margin-top: 20px;
+  color: var(--text);
+}
+
+.login-link a {
+  color: var(--secondary);
+  text-decoration: none;
+}
+
+/* Spinner */
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.spinner.hidden {
+  display: none;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes indeterminate {
+  0% {
+      transform: translateX(0) scaleX(0);
+  }
+  40% {
+      transform: translateX(0) scaleX(0.4);
+  }
+  100% {
+      transform: translateX(100%) scaleX(0.5);
+  }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .signup-container {
+    padding: 20px;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  button, input, select {
+    padding: 10px 12px;
+  }
+}
